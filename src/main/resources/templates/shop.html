@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <span data-th-text="${totalOrder}"></span>
+    <span data-th-tex="${orderDetails}"></span> -->
+    <h1> This is Shop </h1>
+    <span data-th-text="${session.totalOrder}"/>
+    <form action="#" data-th-action="@{/order}" method="Post" data-th-object="${orderDetails}"> 
+        <p>Product Name: <input type="text" data-th-field="*{product}"></p>
+        <p>Quantity: <input type="number" min="1" max="10" data-th-field="*{quantity}" ></p>
+        <input type="submit" value="Add">
+    </form>
+    <br>
+    <form action="#" data-th-action="@{/checkout}" method="GET">
+        <input type="submit" value="Check Out">
+    </form>
+</body>
+</html>

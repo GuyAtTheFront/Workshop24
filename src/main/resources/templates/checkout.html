@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            }
+    </style>
+</head>
+<body>
+    <span data-th-text="${totalOrder}"></span>
+    <h1>This is Checkout</h1>
+    <hr>
+
+    <div data-th-if="${totalOrder == null or totalOrder.orders.isEmpty()}">
+        <h2> Your cart is empty </h2>
+    </div>
+    
+    <div data-th-if = "${not (totalOrder == null or totalOrder.orders.isEmpty())}">
+        <form action="#" data-th-action="@{/submit}" method="post" data-th-object="${orders}">
+            <p>Name: <input type="text" data-th-field="*{customerName}"></p>
+            <p>Address: <input type="text" data-th-field="*{shipAddress}"></p>
+            <p>Notes: <input type="text" data-th-field="*{notes}"></p>
+            <input type="submit">
+        </form>
+
+        <h2> Your orders are: </h2>
+        <div data-th-object="${totalOrder}">
+        <table>
+            <tr>
+                <th>Index</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+            </tr>
+            <tr data-th-each="item : ${totalOrder.orders}">
+                <td data-th-text="${itemStat.index}"></td>
+                <td data-th-text="${item.product}"></td>
+                <td data-th-text="${item.quantity}"></td>
+            </tr>
+        </table>
+        </div>
+    </div>
+
+</body>
+</html>
